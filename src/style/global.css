@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --background-1: #F6EDFF;
+    --button-1: #E0B6FF;
+    --button-2: #FFFFFF;
+    --card-1: #D0BCFF;
+    --color-1: #FFFFFF;
+    --color-2: #1E1B1B;
+    --color-3: #494649;
+    --progress-bar-1: #8A20D5;
+}
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url(/public/font/OpenSans-Regular.ttf);
+    font-weight: normal;
+    font-style: normal; 
+}
+
+body {
+    font-family: "OpenSans-Regular", sans-serif; 
+}
