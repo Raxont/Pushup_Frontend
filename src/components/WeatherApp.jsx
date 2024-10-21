@@ -7,6 +7,8 @@ import SunriseSunset from "./SunriseSunset";
 
 const WeatherApp = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,15 @@ const WeatherApp = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrolled]);
+
+   // Función para manejar el evento de búsqueda
+   const handleSearch = () => {
+    // Aquí puedes manejar el valor del input (searchQuery)
+    console.log("Searching for:", searchQuery);
+    // Aquí puedes agregar la lógica para realizar la búsqueda.
+    setSearchQuery(""); // Limpiar el input después de la búsqueda
+    setIsSearching(false); // Cerrar el input después de buscar
+  };
 
   return (
     <div className="relative min-h-screen bg-bg">
@@ -48,10 +59,29 @@ const WeatherApp = () => {
             <div>
             <h1 className="text-2xl">Kharkiv, Ukraine</h1>
             </div>
-            <img       
-            src={scrolled ? "/icons/search_black.png" : "/icons/search_white.png"} alt="Search_Icon" />
+            <img
+            src={scrolled ? "/icons/search_black.png" : "/icons/search_white.png"}
+            alt="Search_Icon"
+            onClick={() => setIsSearching(!isSearching)} 
+          />
+           {isSearching && (
+              <div className="absolute top-2 right-0 bgbg p-2 rounded-md">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="border rounded px-2 py-1 w-32 text-black"
+                  placeholder="Buscar..."
+                />
+                <button
+                  onClick={handleSearch}
+                  className="bg-card1 text-white rounded px-2 py-1 ml-2"
+                >
+                  Buscar
+                </button>
+              </div>
+            )}
         </div>
-
         <div className="flex items-center justify-between mb-4 content-end">
             <div className="flex items-end content-end">
                 <div  className={`font-bold ${scrolled ? "text-6xl" : "text-8xl"}`}>3°</div>
